@@ -7,8 +7,8 @@ import (
 )
 
 type Response struct {
-	Data  interface{}
-	Error error
+	Data  interface{} `json:"data,omitempty"`
+	Error error `json:"error,omitempty"`
 }
 
 
