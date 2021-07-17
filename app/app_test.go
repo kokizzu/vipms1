@@ -18,7 +18,7 @@ func basicAuth(username, password string) string {
 	return base64.StdEncoding.EncodeToString([]byte(auth))
 }
 
-func testInsert(t *testing.T) {
+func testInsert(t *testing.T) int64 {
 	client := &http.Client{}
 	postData := url.Values{}
 	postData.Set(`name`, `test1`)
@@ -50,15 +50,18 @@ func testInsert(t *testing.T) {
 	m2, ok := m[`data`].(map[string]interface{})
 	if ok {
 		fmt.Println(`id = `, m2[`id`])
+		return int64(m2[`id`].(float64))
 	}
+	return 0
 }
 
 func TestVip(t *testing.T) {
 	// test insert	
+	id := testInsert(t)
 
 	// test select
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", "http://localhost"+config.API_PORTT+`/vips/by-id/`+strconv.Itoa(id), nil)
+	req, err := http.NewRequest("GET", "http://localhost"+config.API_PORTT+`/vips/by-id/`+strconv.Itoa(int(id)), nil)
 	if err != nil {
 		t.Error(err)
 	}

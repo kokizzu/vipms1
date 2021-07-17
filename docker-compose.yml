@@ -2,7 +2,7 @@ version: '3'
 
 services:
   db1:
-    image: mysql
+    image: mysql:5.7
     volumes:
       - db_data1:/var/lib/mysql
     restart: always
@@ -12,7 +12,7 @@ services:
       MYSQL_USER: user1
       MYSQL_PASSWORD: pwd1
     ports:
-       - "3336:3306"
+       - "3306:3306"
       
 volumes:
   db_data1:

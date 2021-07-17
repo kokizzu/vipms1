@@ -3,6 +3,8 @@ package model
 import (
 	"testing"
 	"vipms1/app/config"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func TestVip(t *testing.T) {
@@ -11,10 +13,16 @@ func TestVip(t *testing.T) {
 		t.Error(err)
 	}
 	
+	err = CreateVipTable(db)
+	if err != nil {
+		t.Error(err)
+	}
+	
 	// test insert
 	vip := Vip{
 		Name: `test`,
 		Country: `test2`,
+		ETA: `2021-03-07 23:04:24`,
 	}
 	id, err := vip.Insert(db)
 	if id == 0 {
