@@ -1,6 +1,8 @@
 package model
 
 import (
+	"time"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/jmoiron/sqlx"
 )
@@ -15,6 +17,22 @@ type Vip struct {
 	Attributes string `db:"attributes"`
 }
 
+func (vip *Vip) ValidationError() string {
+	if len(vip.Name) < 3 {
+		return `name must be minimum 3 characters`
+	}
+	if len(vip.Country) < 3 {
+		return `country must be minimum 3 characters`
+	}
+	if _, err := time.Parse(`2006-01-02 15:04:05`, vip.ETA); err != nil {
+		return `eta must use format YYYY-MM-DD HH:MM:SS`
+	}
+	if len(vip.PhotoUrl) > 120 {
+		return `photo_url must be maximum 120 characters`
+	}
+	return ``
+}
+
 func (v *Vip) GetById(db *sqlx.DB, id int64) error {
 	err := db.Get(v, `SELECT id, name, country, eta, arrived, photo_url, attributes
 FROM vips
@@ -23,13 +41,10 @@ WHERE id = ?`, id)
 }
 
 func (vip *Vip) IsNotValid(c *fiber.Ctx) bool {
-	if NotValid(c, len(vip.Name) < 3, `name must be minimum 3 characters`) {
+	if errMsg := vip.ValidationError(); errMsg != `` {
+		NotValid(c, true, errMsg)
 		return true
 	}
-	if NotValid(c, len(vip.Country) < 3, `country must be minimum 3 characters`) {
-		return true
-	}
-	// TODO: check other things
 	return false
 }
 
