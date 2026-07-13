@@ -1,4 +1,4 @@
-package recover
+package recover //nolint:predeclared // TODO: Rename to some non-builtin
 
 import (
 	"github.com/gofiber/fiber/v2"
@@ -19,10 +19,8 @@ type Config struct {
 	// StackTraceHandler defines a function to handle stack trace
 	//
 	// Optional. Default: defaultStackTraceHandler
-	StackTraceHandler func(e interface{})
+	StackTraceHandler func(c *fiber.Ctx, e interface{})
 }
-
-var defaultStackTraceBufLen = 1024
 
 // ConfigDefault is the default config
 var ConfigDefault = Config{

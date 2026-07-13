@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"os"
 	"strconv"
 	"testing"
 	"vipms1/app/config"
@@ -62,10 +63,14 @@ func testCreate(t *testing.T) int64 {
 }
 
 func TestVip(t *testing.T) {
+	if os.Getenv("RUN_MYSQL_INTEGRATION") != "1" {
+		t.Skip("set RUN_MYSQL_INTEGRATION=1 to run API tests against MySQL")
+	}
+
 	// start app
 	go Run()
 
-	// test create	
+	// test create
 	id := testCreate(t)
 
 	// test select
