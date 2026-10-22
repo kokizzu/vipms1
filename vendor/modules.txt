@@ -2,9 +2,10 @@
 ## explicit; go 1.24.0
 filippo.io/edwards25519
 filippo.io/edwards25519/field
-# github.com/andybalholm/brotli v1.1.0
-## explicit; go 1.13
+# github.com/andybalholm/brotli v1.2.1
+## explicit; go 1.22
 github.com/andybalholm/brotli
+github.com/andybalholm/brotli/flate
 github.com/andybalholm/brotli/matchfinder
 # github.com/go-sql-driver/mysql v1.10.0
 ## explicit; go 1.24.0
@@ -25,11 +26,20 @@ github.com/google/uuid
 ## explicit; go 1.10
 github.com/jmoiron/sqlx
 github.com/jmoiron/sqlx/reflectx
-# github.com/klauspost/compress v1.17.9
-## explicit; go 1.20
+# github.com/klauspost/compress v1.20.3
+## explicit; go 1.25
+github.com/klauspost/compress
 github.com/klauspost/compress/flate
+github.com/klauspost/compress/fse
 github.com/klauspost/compress/gzip
+github.com/klauspost/compress/huff0
+github.com/klauspost/compress/internal/cpuinfo
+github.com/klauspost/compress/internal/le
+github.com/klauspost/compress/internal/regmask
+github.com/klauspost/compress/internal/snapref
 github.com/klauspost/compress/zlib
+github.com/klauspost/compress/zstd
+github.com/klauspost/compress/zstd/internal/xxhash
 # github.com/mattn/go-colorable v0.1.13
 ## explicit; go 1.15
 github.com/mattn/go-colorable
@@ -45,16 +55,14 @@ github.com/rivo/uniseg
 # github.com/valyala/bytebufferpool v1.0.0
 ## explicit
 github.com/valyala/bytebufferpool
-# github.com/valyala/fasthttp v1.51.0
-## explicit; go 1.20
+# github.com/valyala/fasthttp v1.70.0
+## explicit; go 1.24.0
 github.com/valyala/fasthttp
 github.com/valyala/fasthttp/fasthttputil
 github.com/valyala/fasthttp/reuseport
 github.com/valyala/fasthttp/stackless
-# github.com/valyala/tcplisten v1.0.0
-## explicit; go 1.12
-github.com/valyala/tcplisten
-# golang.org/x/sys v0.28.0
-## explicit; go 1.18
+github.com/valyala/fasthttp/tcplisten
+# golang.org/x/sys v0.44.0
+## explicit; go 1.25.0
 golang.org/x/sys/unix
 golang.org/x/sys/windows
